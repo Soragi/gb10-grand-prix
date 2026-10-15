@@ -1,0 +1,2 @@
+# Installed with --no-deps (dependencies are in requirements.txt)
+chatterbox-tts @ git+https://github.com/resemble-ai/chatterbox.git@3f35dfc8fbe63e5b29793289dc68f1875bb317a5

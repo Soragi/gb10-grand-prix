@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DGX Spark GB10 Grand Prix</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" width="640" height="360"></canvas>
+
+  <!-- ===== HUD ===== -->
+  <div id="hud" class="hidden">
+    <div class="hud-tl">
+      <div class="hud-lap">LAP <span id="hLap">1</span>/<span id="hLaps">3</span></div>
+      <div class="hud-time" id="hTime">0:00.00</div>
+      <div class="hud-racer" id="hRacer"></div>
+    </div>
+    <div class="hud-tr">
+      <div class="hud-pos"><span id="hPos">8</span><sup id="hPosSuf">th</sup></div>
+      <div class="hud-of">of <span id="hPosOf">8</span></div>
+    </div>
+    <div class="hud-bl">
+      <div class="hud-gpu"><span class="gpu-icon"></span><span id="hGpu">0</span><small>/<span id="hGpuTot">0</span></small></div>
+      <div class="hud-turbo">TURBO <span id="hTurbo"></span><small>SPACE</small></div>
+    </div>
+    <div class="hud-br">
+      <div class="hud-speed"><span id="hSpeed">0</span><small>km/h</small></div>
+      <div class="speedbar"><div id="hSpeedBar"></div></div>
+    </div>
+    <div id="ticker" class="hidden"><div class="tk-label">🎙 AI COMMENTATOR</div><div id="tkText"></div><div id="tkMeta"></div></div>
+    <div id="msg"></div>
+    <div id="submsg"></div>
+  </div>
+
+  <div id="spark" class="spark hidden"></div>
+
+  <!-- ===== TITLE / REGISTRATION DASHBOARD ===== -->
+  <div id="scrTitle" class="screen">
+    <header class="title-head">
+      <div>
+        <div class="t-small">DGX SPARK</div>
+        <div class="t-big">GB10 GRAND PRIX</div>
+      </div>
+    </header>
+    <div class="title-body">
+      <section class="panel left">
+        <label class="step">1 · CHOOSE A TRACK <small>(same route · one leaderboard)</small></label>
+        <div id="trackSel"></div>
+        <label class="step">2 · YOUR RACER</label>
+        <div class="preview">
+          <canvas id="previewKart" width="220" height="130"></canvas>
+          <div id="previewName">— add a racer with ＋ →</div>
+        </div>
+        <button id="btnStart" class="btn primary">START RACE ⏎</button>
+        <div class="btn-row">
+          <button id="btnBoard" class="btn">🏆 LEADERBOARD</button>
+          <button id="btnSettings" class="btn">⚙ SETTINGS</button>
+        </div>
+        <div class="controls">
+          <div><b>← →</b> steer</div><div><b>↑</b> gas</div><div><b>↓</b> brake</div>
+          <div><b>SPACE</b> turbo</div><div><b>P</b> pause</div><div><b>M</b> sound</div>
+        </div>
+        <div class="ai-opts">
+          <span>AI COMMENTARY</span>
+          <div id="langSel"><button data-l="en">EN</button><button data-l="nl">NL</button><button data-l="fr">FR</button></div>
+          <button id="voiceBtn">🔊 VOICE ON</button>
+        </div>
+      </section>
+      <section class="panel right">
+        <label class="step">CHOOSE YOUR RACER <small>(arrow keys + ENTER · ＋ builds a new kart)</small></label>
+        <div id="grid" tabindex="0"></div>
+        <div class="rules">
+          Race <b id="rulesLaps">3 laps</b> (change in ⚙ Settings) and grab the floating <b class="g">GPUs</b>.
+          <b>Score = race time − 0.5 s per GPU</b> (−10 s extra for collecting them all). Every 5 GPUs charges your TURBO (hold max 1). Lowest score wins!
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ===== SETTINGS: RACER GARAGE ===== -->
+  <div id="scrGarage" class="screen hidden">
+    <header class="board-head">
+      <div class="t-small">DGX SPARK GB10 GRAND PRIX</div>
+      <div class="t-mid">⚙ SETTINGS · RACER GARAGE</div>
+    </header>
+    <div class="garage">
+      <section class="panel g-list">
+        <label class="step">RACERS <small id="gCount"></small></label>
+        <div id="gList"></div>
+        <button id="gNew" class="btn primary">＋ NEW RACER</button>
+        <label class="step">LAPS PER RACE <small>(each lap count has its own leaderboard)</small></label>
+        <div id="lapSel"><button data-l="1">1 LAP</button><button data-l="2">2 LAPS</button><button data-l="3">3 LAPS</button></div>
+      </section>
+      <section class="panel g-edit">
+        <label class="step" id="gTitle">NEW RACER</label>
+        <div class="g-row"><span>NAME</span><input id="gName" maxlength="12" autocomplete="off" spellcheck="false" placeholder="YOUR NAME"></div>
+        <div class="g-row"><span>CAR COLOUR</span><div class="swatches" id="gCar"></div></div>
+        <div class="g-row"><span>RACER COLOUR</span><div class="swatches" id="gSuit"></div></div>
+        <div class="g-row"><span>WHEELS</span><div class="wheels" id="gWheels"></div></div>
+        <div class="g-preview"><canvas id="gSide" width="220" height="130"></canvas><canvas id="gRear" width="160" height="124"></canvas></div>
+        <div id="gMsg"></div>
+        <div class="g-btns">
+          <button id="gSave" class="btn primary">SAVE ⏎</button>
+          <button id="gDelete" class="btn danger">DELETE</button>
+          <button id="gBack" class="btn">BACK (ESC)</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ===== RESULTS (after one run) ===== -->
+  <div id="scrResults" class="screen hidden">
+    <div class="panel results">
+      <div class="r-title">FINISH!</div>
+      <div class="r-cols">
+        <div class="r-left">
+          <div class="r-racer"><canvas id="resKart" width="220" height="130"></canvas><div><div id="resName" class="r-name"></div><div id="resCo" class="r-co"></div></div></div>
+          <table class="r-table">
+            <tr><td>Race time</td><td id="resTime"></td></tr>
+            <tr><td>GPUs</td><td id="resGpu"></td></tr>
+            <tr><td>GPU bonus</td><td id="resBonus"></td></tr>
+            <tr class="big"><td>SCORE</td><td id="resScore"></td></tr>
+          </table>
+          <div id="resRank" class="r-rank"></div>
+          <div class="usage">
+            <div class="u-head">🧮 AI TOKENS USED THIS RACE <span id="uState"></span></div>
+            <table>
+              <tr><td>LLM text (Qwen3.6)</td><td id="uLlm"></td></tr>
+              <tr><td>Voice (Chatterbox)</td><td id="uTts"></td></tr>
+              <tr><td></td><td id="uAudio" class="u-sub"></td></tr>
+              <tr class="u-tot"><td>TOTAL TOKENS</td><td id="uTot"></td></tr>
+            </table>
+            <div id="uSpot"></div>
+          </div>
+        </div>
+        <div class="r-right">
+          <div class="db-head">🤖 AI RACE ENGINEER DEBRIEF</div>
+          <div id="dbText"></div>
+          <div id="dbMeta"></div>
+        </div>
+      </div>
+      <button id="btnResNext" class="btn primary">SEE LEADERBOARD ⏎</button>
+    </div>
+  </div>
+
+  <!-- ===== LEADERBOARD (end dashboard) ===== -->
+  <div id="scrBoard" class="screen hidden">
+    <header class="board-head">
+      <div class="t-small">DGX SPARK GB10 GRAND PRIX</div>
+      <div class="t-mid">🏆 LEADERBOARD · <span id="boardLaps">3 LAPS</span></div>
+    </header>
+    <div id="podium"></div>
+    <div id="boardList"></div>
+    <div class="board-btns">
+      <button id="btnNew" class="btn primary">NEXT RACE ⏎</button>
+      <button id="btnCsv" class="btn small">EXPORT CSV</button>
+      <button id="btnReset" class="btn small danger">RESET BOARD</button>
+    </div>
+  </div>
+
+  <!-- ===== PAUSE ===== -->
+  <div id="scrPause" class="screen hidden dim">
+    <div class="panel pause">
+      <div class="t-mid">PAUSED</div>
+      <button id="btnResume" class="btn primary">RESUME (P)</button>
+      <button id="btnQuit" class="btn danger">QUIT RUN (Q)</button>
+    </div>
+  </div>
+</div>
+<script src="js/util.js"></script>
+<script src="js/art.js"></script>
+<script src="js/tracks.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

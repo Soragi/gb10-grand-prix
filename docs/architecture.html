@@ -1,0 +1,210 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;background:#0b0f0a}
+  svg{display:block}
+  .t{font-family:Inter,DejaVu Sans,sans-serif;fill:#e9f2e3}
+  .px{font-family:'Press Start 2P',monospace}
+  .mono{font-family:'JetBrains Mono',DejaVu Sans Mono,monospace}
+  .h1{font-size:30px;fill:#ffd23f}
+  .h2{font-size:15px;fill:#76b900}
+  .sec{font-size:13px;fill:#76b900}
+  .bt{font-size:17px;font-weight:800;fill:#ffffff}
+  .bs{font-size:13.5px;fill:#b9c9ae}
+  .lbl{font-size:13px;fill:#d7e8c8}
+  .small{font-size:12px;fill:#93a888}
+  .num{font-size:13px;font-weight:600;fill:#ffd23f}
+</style></head><body>
+<svg id="d" width="1600" height="1160" viewBox="0 0 1600 1160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#76b900"/></marker>
+    <marker id="ay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ffd23f"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7d8f74"/></marker>
+    <linearGradient id="gpu" x1="0" x2="1"><stop offset="0" stop-color="#3f6600"/><stop offset="1" stop-color="#76b900"/></linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#141c12" stroke-width="1"/></pattern>
+  </defs>
+  <rect width="1600" height="1160" fill="url(#grid)"/>
+
+  <!-- ===== Header ===== -->
+  <text x="40" y="62" class="px h1">DGX SPARK GB10 GRAND PRIX</text>
+  <text x="40" y="96" class="t" style="font-size:20px;font-weight:600">How it works: a retro kart racer with three live AI tasks, running entirely on one DGX Spark, powered by the GB10</text>
+
+  <!-- ===== Browser column ===== -->
+  <rect x="40" y="130" width="440" height="560" rx="10" fill="#10160e" stroke="#4a5e40" stroke-width="2"/>
+  <text x="60" y="160" class="px sec">① PLAYER'S BROWSER</text>
+  <text x="60" y="180" class="t small">Booth screen (Firefox kiosk) or laptop over an SSH tunnel</text>
+  <g class="t">
+    <rect x="60" y="196" width="400" height="66" rx="6" fill="#18221a" stroke="#2e3d2a"/>
+    <text x="76" y="222" class="bt">🏎 Game engine</text>
+    <text x="76" y="245" class="bs">Canvas pseudo-3D · 3 tracks · 3 laps · 8 karts</text>
+
+    <rect x="60" y="272" width="400" height="66" rx="6" fill="#18221a" stroke="#2e3d2a"/>
+    <text x="76" y="298" class="bt">⚡ Race event detector</text>
+    <text x="76" y="321" class="bs">overtakes · GPU streaks · crashes · boosts · finish</text>
+
+    <rect x="60" y="348" width="400" height="66" rx="6" fill="#18221a" stroke="#2e3d2a"/>
+    <text x="76" y="374" class="bt">📈 Telemetry recorder</text>
+    <text x="76" y="397" class="bs">13 track sections: time lost, off-road, crashes, GPUs</text>
+
+    <rect x="60" y="424" width="400" height="66" rx="6" fill="#1d2a14" stroke="#76b900"/>
+    <text x="76" y="450" class="bt">🎙 Commentator scheduler</text>
+    <text x="76" y="473" class="bs">picks top event · prepares next line while current plays</text>
+
+    <rect x="60" y="500" width="400" height="66" rx="6" fill="#18221a" stroke="#2e3d2a"/>
+    <text x="76" y="526" class="bt">🔊 Web Audio mixer</text>
+    <text x="76" y="549" class="bs">chiptune + SFX · AI voice · music ducks under voice</text>
+
+    <rect x="60" y="576" width="400" height="96" rx="6" fill="#18221a" stroke="#2e3d2a"/>
+    <text x="76" y="602" class="bt">🖥 Screens</text>
+    <text x="76" y="625" class="bs">racer garage · 3 themed tracks, one route · HUD</text>
+    <text x="76" y="645" class="bs">AI commentary ticker · AI Race Engineer debrief</text>
+    <text x="76" y="665" class="bs">one podium leaderboard · "Powered by the GB10" panel</text>
+  </g>
+
+  <!-- ===== Link browser -> Spark ===== -->
+  <g class="t">
+    <line x1="482" y1="300" x2="582" y2="300" stroke="#76b900" stroke-width="3" marker-end="url(#ar)"/>
+    <text x="532" y="290" text-anchor="middle" class="lbl">race facts</text>
+    <line x1="482" y1="380" x2="582" y2="380" stroke="#76b900" stroke-width="3" marker-end="url(#ar)"/>
+    <text x="532" y="370" text-anchor="middle" class="lbl">telemetry</text>
+    <line x1="582" y1="460" x2="482" y2="460" stroke="#ffd23f" stroke-width="3" marker-end="url(#ay)"/>
+    <text x="532" y="450" text-anchor="middle" class="lbl">text + voice</text>
+    <line x1="582" y1="540" x2="482" y2="540" stroke="#ffd23f" stroke-width="3" marker-end="url(#ay)"/>
+    <text x="532" y="530" text-anchor="middle" class="lbl">live stats</text>
+    <rect x="490" y="600" width="84" height="58" rx="5" fill="#0b0f0a" stroke="#4a5e40"/>
+    <text x="532" y="622" text-anchor="middle" class="small">HTTP</text>
+    <text x="532" y="640" text-anchor="middle" class="small">SSH tunnel</text>
+    <text x="532" y="654" text-anchor="middle" class="num" style="font-size:12px">:8765</text>
+  </g>
+
+  <!-- ===== DGX Spark ===== -->
+  <rect x="590" y="130" width="970" height="560" rx="10" fill="#0f150c" stroke="#76b900" stroke-width="3"/>
+  <text x="612" y="160" class="px sec">② DGX SPARK · GB10</text>
+  <text x="612" y="180" class="t small">Everything below runs locally: no cloud, no internet needed</text>
+
+  <!-- AI hub -->
+  <rect x="612" y="196" width="330" height="390" rx="8" fill="#16210f" stroke="#76b900" stroke-width="2"/>
+  <text x="630" y="224" class="t bt">AI hub · server.py</text>
+  <text x="630" y="244" class="t bs">Python, one thread per request</text>
+  <g class="t">
+    <rect x="630" y="258" width="294" height="54" rx="5" fill="#0b0f0a" stroke="#2e3d2a"/>
+    <text x="642" y="280" class="mono lbl">/api/commentary</text>
+    <text x="642" y="300" class="bs">race story → F1 line · product spotlight</text>
+    <rect x="630" y="318" width="294" height="54" rx="5" fill="#0b0f0a" stroke="#2e3d2a"/>
+    <text x="642" y="340" class="mono lbl">/api/debrief</text>
+    <text x="642" y="360" class="bs">telemetry → streamed coaching</text>
+    <rect x="630" y="378" width="294" height="54" rx="5" fill="#0b0f0a" stroke="#2e3d2a"/>
+    <text x="642" y="400" class="mono lbl">/api/tts</text>
+    <text x="642" y="420" class="bs">proxy to the voice service</text>
+    <rect x="630" y="438" width="294" height="54" rx="5" fill="#0b0f0a" stroke="#2e3d2a"/>
+    <text x="642" y="460" class="mono lbl">/api/stats · /api/usage</text>
+    <text x="642" y="480" class="bs">live GPU stats · exact tokens per race</text>
+    <rect x="630" y="498" width="294" height="54" rx="5" fill="#0b0f0a" stroke="#2e3d2a"/>
+    <text x="642" y="520" class="mono lbl">/api/scores</text>
+    <text x="642" y="540" class="bs">leaderboard (data/scores.json)</text>
+    <text x="630" y="574" class="small">Up to 3 LLM jobs in parallel · degrades to text-only</text>
+  </g>
+
+  <!-- vLLM -->
+  <rect x="1010" y="196" width="530" height="150" rx="8" fill="#16210f" stroke="#76b900" stroke-width="2"/>
+  <text x="1028" y="224" class="t bt">🧠 LLM · vLLM server  <tspan class="mono" style="font-size:13px;fill:#93a888">:8000</tspan></text>
+  <text x="1028" y="246" class="t bs">Qwen3.6-35B-A3B · NVFP4 (4-bit for Blackwell) · OpenAI-compatible API</text>
+  <g class="t">
+    <text x="1028" y="276" class="lbl">• Live F1 commentary line</text><text x="1522" y="276" text-anchor="end" class="num">≈ 0.3–0.6 s</text>
+    <text x="1028" y="300" class="lbl">• AI Race Engineer debrief, streamed word by word</text><text x="1522" y="300" text-anchor="end" class="num">30–75 tok/s</text>
+    <text x="1028" y="324" class="lbl">• First word of the debrief</text><text x="1522" y="324" text-anchor="end" class="num">≈ 0.2 s</text>
+  </g>
+
+  <!-- TTS -->
+  <rect x="1010" y="362" width="530" height="134" rx="8" fill="#16210f" stroke="#76b900" stroke-width="2"/>
+  <text x="1028" y="390" class="t bt">🗣 Voice · Chatterbox TTS  <tspan class="mono" style="font-size:13px;fill:#93a888">:8766</tspan></text>
+  <text x="1028" y="412" class="t bs">PyTorch on CUDA · priority queue: live commentary first</text>
+  <g class="t">
+    <text x="1028" y="442" class="lbl">• Chatterbox-Turbo: English</text><text x="1522" y="442" text-anchor="end" class="num">≈ 1 s / line</text>
+    <text x="1028" y="466" class="lbl">• Chatterbox-Multilingual: Dutch · French</text><text x="1522" y="466" text-anchor="end" class="num">≈ 2 s / line</text>
+  </g>
+
+  <!-- sampler + storage -->
+  <rect x="1010" y="512" width="260" height="74" rx="8" fill="#16210f" stroke="#4a5e40" stroke-width="2"/>
+  <text x="1026" y="538" class="t bt" style="font-size:15px">📊 Telemetry sampler</text>
+  <text x="1026" y="560" class="t bs">GPU telemetry · vLLM /metrics</text>
+  <text x="1026" y="577" class="t bs">unified memory · every 1 s</text>
+  <rect x="1282" y="512" width="258" height="74" rx="8" fill="#16210f" stroke="#4a5e40" stroke-width="2"/>
+  <text x="1298" y="538" class="t bt" style="font-size:15px">🏆 Leaderboard store</text>
+  <text x="1298" y="560" class="t bs">JSON file + auto backups</text>
+  <text x="1298" y="577" class="t bs">CSV export from the podium</text>
+
+  <!-- hub arrows -->
+  <line x1="944" y1="285" x2="1006" y2="270" stroke="#76b900" stroke-width="2.5" marker-end="url(#ar)"/>
+  <line x1="944" y1="345" x2="1006" y2="300" stroke="#76b900" stroke-width="2.5" marker-end="url(#ar)"/>
+  <line x1="944" y1="405" x2="1006" y2="430" stroke="#76b900" stroke-width="2.5" marker-end="url(#ar)"/>
+  <line x1="1006" y1="545" x2="944" y2="465" stroke="#7d8f74" stroke-width="2" marker-end="url(#ag)"/>
+
+  <!-- GPU bar -->
+  <rect x="612" y="604" width="928" height="66" rx="8" fill="url(#gpu)"/>
+  <text x="632" y="632" class="t" style="font-size:19px;font-weight:800;fill:#071000">GB10 Grace Blackwell Superchip</text>
+  <text x="632" y="656" class="t" style="font-size:14px;font-weight:600;fill:#0d1f00">128 GB unified memory, shared by the LLM, the voice models and everything else on the Spark</text>
+  <path d="M1540 270 H1551 V600" fill="none" stroke="#76b900" stroke-width="2.5" marker-end="url(#ar)"/>
+  <path d="M1540 430 H1551" fill="none" stroke="#76b900" stroke-width="2.5"/>
+  <text x="1520" y="646" text-anchor="end" class="t" style="font-size:13px;font-weight:800;fill:#0d1f00">runs vLLM + Chatterbox on CUDA</text>
+
+  <!-- ===== Timeline ===== -->
+  <rect x="40" y="716" width="1520" height="400" rx="10" fill="#10160e" stroke="#4a5e40" stroke-width="2"/>
+  <text x="60" y="746" class="px sec">③ ONE RACE: THE AI TASKS RUN IN PARALLEL</text>
+  <text x="60" y="768" class="t small">Real timings from a test race (first 45 s shown). The game never waits for the AI: every call is asynchronous.</text>
+
+  <g id="tl" class="t"></g>
+
+  <text x="40" y="1146" class="t small">Ports: 8765 game + AI hub · 8000 vLLM · 8766 voice. Set up with ./scripts/setup.sh, run with ./scripts/start.sh. If the LLM or voice is offline, the race still runs.</text>
+</svg>
+<script>
+// timeline drawn from data so it stays accurate and tidy
+const g = document.getElementById('tl'), NS = 'http://www.w3.org/2000/svg';
+const X0 = 250, X1 = 1530, T = 52, sx = t => X0 + (X1 - X0) * t / T;
+const lanes = [['Game', 800], ['LLM (vLLM)', 850], ['Voice (TTS)', 900], ['Speakers', 950], ['Debrief (LLM)', 1000]];
+const el = (tag, a, txt) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; g.appendChild(e); return e; };
+lanes.forEach(([n, y]) => {
+  el('text', { x: 60, y: y + 5, class: 'lbl', 'font-weight': 600 }, n);
+  el('line', { x1: X0, x2: X1, y1: y, y2: y, stroke: '#26331f', 'stroke-width': 1 });
+});
+for (let t = 0; t <= 50; t += 10) {
+  el('line', { x1: sx(t), x2: sx(t), y1: 782, y2: 1022, stroke: '#1d2719' });
+  el('text', { x: sx(t), y: 1040, class: 'small', 'text-anchor': 'middle' }, t + ' s');
+}
+const block = (lane, a, b, fill, label, tc = '#071000') => {
+  const y = lanes[lane][1];
+  el('rect', { x: sx(a), y: y - 13, width: Math.max(4, sx(b) - sx(a)), height: 26, rx: 4, fill });
+  if (label) el('text', { x: (sx(a) + sx(b)) / 2, y: y + 5, 'text-anchor': 'middle', style: `font-size:12px;font-weight:700;fill:${tc}` }, label);
+};
+const evs = [[0.5, 'lights'], [7.4, 'GO!'], [19, 'overtake'], [21, 'crash'], [33.5, 'GPU ×3'], [38.5, 'final stretch'], [44, 'FINISH']];
+evs.forEach(([t, n]) => {
+  const y = lanes[0][1];
+  el('path', { d: `M${sx(t)} ${y - 9} l9 9 l-9 9 l-9 -9z`, fill: n === 'FINISH' ? '#ffd23f' : '#76b900' });
+  el('text', { x: sx(t), y: y - 16, 'text-anchor': 'middle', class: 'small', style: 'fill:#d7e8c8' }, n);
+});
+const lines = [[7.4, 8.8, 14.3], [12.7, 14.3, 19.6], [21.0, 22.4, 27.6], [26.0, 27.6, 33.0], [33.5, 34.9, 40.0], [38.4, 40.0, 44.0]];
+lines.forEach(([t, start, end], i) => {
+  block(1, t, t + 0.45, '#76b900');
+  block(2, t + 0.45, t + 1.4, '#ffd23f');
+  block(3, start, end, '#3c6fd8', `line ${i + 1}`, '#fff');
+});
+// finish: commentary + debrief + voices at the same time
+block(1, 44.0, 44.5, '#76b900');
+block(2, 44.5, 45.6, '#ffd23f');
+block(3, 45.6, 50.8, '#3c6fd8', 'finish call', '#fff');
+block(4, 44.0, 47.2, '#76b900', 'streamed', '#071000');
+block(2, 47.3, 48.3, '#ffd23f');
+block(3, 50.8, 52, '#7a52c8');
+// pipelining callout
+el('path', { d: `M${sx(13.2)} 982 C ${sx(12.4)} 960, ${sx(12.4)} 900, ${sx(12.9)} 866`, fill: 'none', stroke: '#ffd23f', 'stroke-width': 1.5, 'stroke-dasharray': '4 3' });
+el('text', { x: sx(13.6), y: 992, class: 'small', style: 'fill:#ffd23f' }, 'next line is written + voiced while the current one');
+el('text', { x: sx(13.6), y: 1006, class: 'small', style: 'fill:#ffd23f' }, 'is still playing, so there is no dead air');
+// concurrency bracket at finish
+el('rect', { x: sx(43.6), y: 828, width: sx(51.2) - sx(43.6), height: 192, rx: 6, fill: 'none', stroke: '#ffd23f', 'stroke-width': 2, 'stroke-dasharray': '6 4' });
+el('text', { x: sx(43.6) - 8, y: 1066, 'text-anchor': 'end', class: 'small', style: 'fill:#ffd23f;font-weight:700' }, 'At the finish: commentary + debrief + voice run together on the GB10 →');
+// legend
+const lg = [['#76b900', 'LLM generating'], ['#ffd23f', 'Voice rendering on GPU'], ['#3c6fd8', 'Commentary playing'], ['#7a52c8', 'Debrief verdict spoken']];
+lg.forEach(([c, n], i) => { const x = 60 + i * 260; el('rect', { x, y: 1078, width: 16, height: 16, rx: 3, fill: c }); el('text', { x: x + 24, y: 1091, class: 'lbl' }, n); });
+</script>
+</body></html>

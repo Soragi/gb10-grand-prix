@@ -1,0 +1,57 @@
+[
+  {
+    "id": "dgx-spark",
+    "name": "DGX Spark",
+    "facts": [
+      "A desktop-sized AI computer built around the GB10 superchip.",
+      "Delivers up to 1 petaFLOP of AI performance at FP4 precision.",
+      "Has 128 GB of unified memory, enough to run AI models of up to 200 billion parameters locally.",
+      "This race's commentator, voice and coaching all run live on one DGX Spark at the booth."
+    ]
+  },
+  {
+    "id": "gb10",
+    "name": "The GB10 superchip",
+    "facts": [
+      "Combines an Arm-based CPU and a Blackwell-generation GPU in a single package.",
+      "CPU and GPU share one pool of 128 GB unified memory, so large AI models fit without copying data between them.",
+      "The GB10 powers this race: the language model and the voice models run on it at the same time."
+    ]
+  },
+  {
+    "id": "fp4",
+    "name": "4-bit AI with FP4",
+    "facts": [
+      "FP4 is a 4-bit floating-point number format for running AI models.",
+      "It shrinks the memory a model needs while keeping accuracy close to higher precision.",
+      "The language model commentating this race runs in a 4-bit format on the GB10."
+    ]
+  },
+  {
+    "id": "local-llm",
+    "name": "A local language model",
+    "facts": [
+      "The race commentary is written by a 35-billion-parameter mixture-of-experts language model.",
+      "Only about 3 billion of its parameters are active per word, which makes it fast enough for live commentary.",
+      "It runs entirely on the device at the booth: no cloud and no internet connection needed."
+    ]
+  },
+  {
+    "id": "voice",
+    "name": "Live text-to-speech",
+    "facts": [
+      "Every commentary line is turned into speech by an open-source text-to-speech model running on the GPU.",
+      "A line of speech is generated in about one to two seconds, in English, Dutch or French.",
+      "The next line is written and voiced while the current one is still playing."
+    ]
+  },
+  {
+    "id": "ai-coach",
+    "name": "AI race engineering",
+    "facts": [
+      "During the race the game records telemetry for every track section: time lost, off-track moments, crashes and GPUs collected.",
+      "After the finish, the language model turns that telemetry into a personal debrief with three concrete tips.",
+      "The debrief is streamed word by word as it is generated on the GB10."
+    ]
+  }
+]

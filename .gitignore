@@ -1,0 +1,32 @@
+# Python envs and caches
+tts/.venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Runtime data: leaderboard with player names, logs, pid files
+data/*
+!data/.gitkeep
+*.log
+
+# Local config and secrets
+.env
+
+
+# Test output
+tests/output/
+
+.DS_Store
+
+# Test tooling
+.venv-test/
+
+# Additional local secrets and exported artifacts
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.zip
+*.tar.gz
